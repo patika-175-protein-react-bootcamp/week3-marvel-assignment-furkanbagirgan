@@ -5,7 +5,7 @@ In this assignment, a project that displays the characters on the screen using t
 ![loading](loadingView.png)
 
 ## Storage View
-<img src="storage.png" align="left" height="477" width="500" >
+<img src="storage.png" align="left" height="477" width="500" ></br>
 
 ## Screen View
-![screen](screenView.png)
+<img src="screenView.png" align="left" height="1936" width="800" >
