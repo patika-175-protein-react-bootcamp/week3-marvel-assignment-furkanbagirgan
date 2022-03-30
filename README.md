@@ -8,4 +8,4 @@ In this assignment, a project that displays the characters on the screen using t
 <img src="storage.png" height="477" width="500">
 
 ## Screen View
-<img src="screenView.png" align="left" height="2178" width="900">
+![screen](screenView.png)
