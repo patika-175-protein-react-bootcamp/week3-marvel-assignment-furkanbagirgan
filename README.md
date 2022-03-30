@@ -6,7 +6,6 @@ In this assignment, a project that displays the characters on the screen using t
 
 ## Storage View
 <img src="storage.png" height="477" width="500">
-<br/>
 
 ## Screen View
 <img src="screenView.png" align="left" height="2178" width="900">
