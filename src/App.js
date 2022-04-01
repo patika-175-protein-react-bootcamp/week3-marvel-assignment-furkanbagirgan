@@ -3,36 +3,29 @@ import React, { useEffect, useState } from 'react';
 
 function App() {
 
-	/* If there is data belonging to active page in session storage,
-	   this data is assigned to the characters state to be displayed on the screen.
-	   Then the getPagination function is called to set the pagination part. */
+	//Here are the states holding the data.
 	const [characters, setCharacters] = useState([]);
 	const [pages, setPages] = useState([]);
 	const [activePage, setActivePage] = useState(1);
 	const [loading, setLoading] = useState(false);
 
-	//de
+	//This function works every time the application is opened and the active page changes.
 	useEffect(() => {
 		getData();
 	}, [activePage]);
 
 	const getData = async () => {
-		//Session storage is checked first according to the page number selected here.
+		/*If there is data belonging to the active page in the storage, it is taken from here,
+		  if not, it is brought from the api and assigned to the characters and the paging function is called.*/
 		setLoading(true);
 		const localCharacters = JSON.parse(sessionStorage.getItem(`${activePage}`));
 		if(localCharacters) {
-			/* If there is data belonging to active page in session storage,
-			  this data is assigned to the characters state to be displayed on the screen.
-			  Then the getPagination function is called to set the pagination part. */
 			const totalCharacters = JSON.parse(sessionStorage.getItem('total'));
 			getPagination(totalCharacters/20);
 			setCharacters(localCharacters);
 			setLoading(false);
 		}
 		else{
-			/* If there is no data belonging to the active page in session storage,
-			   then it is connected to the API and the data is drawn from there and assigned to the characters state.
-			   Then the getPagination function is called to set the pagination part. */
 			const response= await axios.get('http://gateway.marvel.com/v1/public/characters?offset='+((activePage*20)-20)+'&ts=1&apikey=e8f1680aa7c72ebcd49bb515a2ff3780&hash=ed007a9321750d29b2d2c7721a7f740c');
 			getPagination(response.data.data.total/20);
 			setCharacters(response.data.data.results);
@@ -43,8 +36,7 @@ function App() {
 	};
 
 	const getPagination = (totalNumber) => {
-		/*  Here, the elements that will appear in the pagination section are
-			assigned to the pages state according to the selected page number and the total page. */
+		//The pagination section are assigned to the pages state according to the selected page number and the total page.
 		var readypage=[];
 		switch(true){
 		case (activePage<4):
@@ -89,40 +81,32 @@ function App() {
 
 	return (
 		<div className='app'>
-			{/* This is the part where the characters will appear */}
-			<div id="main">
-				{/* This is the list the characters are in */}
-				<ul id="content">
+			<div className='dp-flex-wrap wd-100 main'>
+				<ul className='dp-flex-wrap content'>
 					{
 						/* Here the characters are printed on the screen. */
 						characters.length > 0 && 
 						characters?.map((item, index) =>
-							<li key={index} className="ch-container">
+							<li key={index} className="dp-flex-col ch-container">
 								<img className="character" src={item.thumbnail.path+'/portrait_incredible.'+item.thumbnail.extension} />
-								<span>{item.name}</span>
+								<span className='block-font ch-con-span'>{item.name}</span>
 							</li>
 						)
 					}
 				</ul>
 				{
-					/* The loading screen is shown here. */
-					loading && <div className='loading'><span>Loading Characters...</span></div>
+					loading && <div className='dp-flex loading'><span className='block-font'>Loading Characters...</span></div>
 				}
 			</div>
-
-			{/* This is where the pagination will appear */}
-			<div className="footer">
-				{/* This is the list the pages are in */}
-				<div className="transition">
-					{/* Here the back button is printed on the screen. */}
+			<div className="dp-flex-row wd-100 footer">
+				<div className="dp-flex transition">
+					{/* Here the back button, next button and the page items are printed on the screen. */}
 					{activePage>3 && <span><i className="fa-solid fa-angle-left fa-2xl grey-color" onClick={()=>skipPage(activePage-1)}></i></span>}
 					{
-						/* Here the page items are printed on the screen. */
 						pages.map( (item,index) =>
-							<span key={index} id={activePage===item ? 'active-page' : ''} onClick={item!=='...' ? ()=>skipPage(item) : null}>{item}</span>
+							<span key={index} className={activePage===item ? 'block-font active-page' : 'block-font foot-tran-span grey-color'} onClick={item!=='...' ? ()=>skipPage(item) : null}>{item}</span>
 						)
 					}
-					{/* Here the next button is printed on the screen. */}
 					{activePage<pages[pages.length - 1]-3 && <span><i className="fa-solid fa-angle-right fa-2xl grey-color" onClick={()=>skipPage(activePage+1)}></i></span>}
 				</div>
 			</div>
