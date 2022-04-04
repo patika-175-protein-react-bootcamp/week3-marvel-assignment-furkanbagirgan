@@ -1,16 +1,11 @@
-# week3 case
+# Week 3 Assignment
+In this assignment with React, a project that displays the characters on the screen using the Marvel API has been realized. The characters on the pages that the user clicks for the first time are drawn from the api and displayed. The characters on the pages that the user has previously clicked are saved in session storage. When returning to that page, the characters are taken from the session storage without connecting to the API and displayed on the screen.
 
-https://developer.marvel.com/ API ını kullanarak geçen hafta ki çalışmanızı devam ettirmeniz istenmektedir.
+## Loading View
+![loading](public/loadingView.png)
 
-**HEDEF** : Bir React.JS projesi içerisinde API a istek atarak belirli dataları göstermek ve sayfalamak.
+## Storage View
+<img src="public/storage.png" height="477" width="500">
 
-**İsterler**
-++ Api üzerinde bulunan pagination yapısı ile projenizde pagination yapmanız istenmektedir. Her sayfa değişiminde istek atılarak o sayfaya ait data gelecektir. Ancak geri dönüldüğünde **local storage % session storage** üzerinden data alınması sağlanmalıdır. Sayfada geri dönüldüğünde istek atılmamalıdır.
-
-++ useEffect, useState hooks kullanımına özen gösterilmelidir.
-
-++ Axios kullanmanız önerilir.
-
-++ CSS, HTML, JS ile devam edeceğiz. Projenizde ekstra CSS sablonları v.s kullanmayınız.
-
-
+## Screen View
+![screen](public/screenView.png)
