@@ -26,7 +26,7 @@ function App() {
 			setLoading(false);
 		}
 		else{
-			const response= await axios.get('http://gateway.marvel.com/v1/public/characters?offset='+((activePage*20)-20)+'&ts=1&apikey=e8f1680aa7c72ebcd49bb515a2ff3780&hash=ed007a9321750d29b2d2c7721a7f740c');
+			const response= await axios.get('https://gateway.marvel.com/v1/public/characters?offset='+((activePage*20)-20)+'&ts=1&apikey=e8f1680aa7c72ebcd49bb515a2ff3780&hash=ed007a9321750d29b2d2c7721a7f740c');
 			getPagination(response.data.data.total/20);
 			setCharacters(response.data.data.results);
 			sessionStorage.setItem(`${activePage}`,  JSON.stringify(response.data.data.results));
