@@ -37,6 +37,10 @@
   color: #7e7e7e;
 }
 
+.trans-button:hover{
+  cursor:pointer;
+}
+
 .banner {
   position: absolute;
   margin-top: -4.5%;
